@@ -1,6 +1,6 @@
 import os
 import torch
-from torch.utils.ffi import create_extension
+from torch.utils.cpp_extension import BuildExtension
 
 
 sources = ['src/modulated_dcn.c']
@@ -28,7 +28,7 @@ sources = [os.path.join(this_file, fname) for fname in sources]
 headers = [os.path.join(this_file, fname) for fname in headers]
 extra_objects = [os.path.join(this_file, fname) for fname in extra_objects]
 
-ffi = create_extension(
+ffi = BuildExtension(
     '_ext.modulated_dcn',
     headers=headers,
     sources=sources,
