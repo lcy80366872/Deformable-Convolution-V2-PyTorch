@@ -1,6 +1,7 @@
 import os
 import torch
-from torch.utils.cpp_extension import create_extension
+from torch.utils.cpp_extension import BuildExtension
+
 
 this_file = os.path.dirname(__file__)
 
@@ -21,7 +22,7 @@ print(this_file)
 extra_objects = ['src/deform_conv_cuda_kernel.cu.so']
 extra_objects = [os.path.join(this_file, fname) for fname in extra_objects]
 
-ffi = create_extension(
+ffi = BuildExtension(
     '_ext.deform_conv',
     headers=headers,
     sources=sources,
